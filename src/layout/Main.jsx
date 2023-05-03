@@ -4,14 +4,15 @@ import NavigationBar from "../shared/NavigationBar";
 import { Outlet } from "react-router-dom";
 import Footer from "../shared/Footer";
 import Banner from "../component/Banner/Banner";
+import Experience from "../component/Experience/Experience";
 
 const Main = () => {
   return (
-    <div>
+    <div className="">
       <NavigationBar></NavigationBar>
-      <Banner></Banner>
-      
-      <Outlet></Outlet>
+      <Banner></Banner> 
+      <Experience></Experience>
+
       <Footer></Footer>
     </div>
   );
