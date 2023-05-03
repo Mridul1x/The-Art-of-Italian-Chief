@@ -15,8 +15,8 @@ const Banner = () => {
         <div className="text-3xl lg:text-6xl text-stone-300 font-bold">
           <Typewriter
             options={{
-              pauseFor: 2000,
-              strings: ["Welcome to World Class Chef"],
+              pauseFor: 500,
+              strings: ["Welcome to","World Class Chef"],
               autoStart: true,
               loop: true,
             }}
@@ -34,10 +34,7 @@ const Banner = () => {
           </button>
         </Link>
       </div>
-      <Carousel
-        style={{ position: "fixed", height: "500px" }}
-        className="lg:w-3/5 mx-auto mt-5 lg:mt-0"
-      >
+      <Carousel className="lg:w-3/5 mx-auto mt-5 lg:mt-0">
         <div>
           <img src={food1} />
           <p className="legend">Lasagne</p>

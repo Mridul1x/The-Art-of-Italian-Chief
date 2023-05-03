@@ -3,7 +3,7 @@ import photo from "../../assets/experience.png";
 
 const Experience = () => {
   return (
-      <div className="mt-12 flex flex-col lg:flex-row mx-auto items-center w-1/2  gap-7">
+      <div className="container mt-28 flex flex-col lg:flex-row mx-auto items-center w-1/2  gap-7">
         <div>
           <img src={photo} alt="" />
         </div>
