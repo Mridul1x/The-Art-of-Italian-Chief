@@ -12,8 +12,9 @@ const NavigationBar = () => {
         console.log(error.message);
       });
   };
+  // bg-slate-950
   return (
-    <div className="navbar 0 mx-auto bg-slate-950 ">
+    <div className="navbar 0 mx-auto  bg-slate-950">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -75,11 +76,12 @@ const NavigationBar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <label className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src={user.photoURL} />
+            <div
+              data-tip={user.displayName}
+              className="me-2 tooltip tooltip-bottom "
+            >
+              <img className="w-11 rounded-full " src={user.photoURL} />
             </div>
-          </label>
         ) : (
           <div className="rounded-full text-white">
             <FaUserCircle
