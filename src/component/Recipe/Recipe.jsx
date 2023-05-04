@@ -6,7 +6,7 @@ import "@smastrom/react-rating/style.css";
 import { FaHeart, FaRegHeart, FaRegStar } from "react-icons/fa";
 
 const Recipe = ({ recipe }) => {
-  const { recipeName, image, ingredients, cookingMethod, rating, isFavorite } =
+  const { recipeName, image, ingredients, cookingMethod, rating} =
     recipe;
   const [favorite, setFavorite] = useState(false);
 
@@ -18,7 +18,7 @@ const Recipe = ({ recipe }) => {
 
   return (
     <div>
-      <div className="card  bg-base-100 shadow-xl image-full">
+      <div className="card bg-base-100 shadow-xl image-full">
         <figure>
           <img src={image} alt="Shoes" />
         </figure>

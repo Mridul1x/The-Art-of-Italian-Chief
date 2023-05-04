@@ -9,31 +9,9 @@ import About from "../component/About/About";
 import ChefCards from "../chefSection/ChefCards/ChefCards";
 import ViewChefDetails from "../chefSection/ViewChefDetails/ViewChefDetails";
 import ChefLayout from "../layout/chefLayout";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main></Main>,
-    children: [
-      {
-        path: "/",
-        element: <ChefCards></ChefCards>,
-        loader: () => fetch("http://localhost:5000/chef"),
-      },
-    ],
-  },
-  {
-    path: "chef",
-    element: <ChefLayout></ChefLayout>,
-    children: [
-      {
-        path: ":id",
-        element: <ViewChefDetails></ViewChefDetails>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/chef/${params.id}`),
-      },
-    ],
-  },
   {
     path: "/",
     element: <LoginLayout></LoginLayout>,
@@ -53,6 +31,33 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
+      },
+    ],
+  },
+  {
+    path: "/home",
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/home",
+        element: <ChefCards></ChefCards>,
+        loader: () => fetch("http://localhost:5000/chef"),
+      },
+    ],
+  },
+  {
+    path: "chef",
+    element: <ChefLayout></ChefLayout>,
+    children: [
+      {
+        path: ":id",
+        element: (
+          <PrivateRoute>
+            <ViewChefDetails></ViewChefDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/chef/${params.id}`),
       },
     ],
   },

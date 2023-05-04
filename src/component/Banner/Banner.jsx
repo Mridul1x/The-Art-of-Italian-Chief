@@ -10,13 +10,13 @@ import Typewriter from "typewriter-effect";
 
 const Banner = () => {
   return (
-    <div className="h-screen container mx-auto banner flex flex-col lg:flex-row justify-center items-center px-5 ">
+    <div className="h-screen 0  banner flex flex-col lg:flex-row justify-center items-center px-5 ">
       <div className="text-center lg:text-start lg:basis-1/2">
         <div className="text-3xl lg:text-6xl text-stone-300 font-bold">
           <Typewriter
             options={{
               pauseFor: 500,
-              strings: ["Welcome to","World Class Chef"],
+              strings: ["Welcome to World Class Chef"],
               autoStart: true,
               loop: true,
             }}
@@ -25,11 +25,11 @@ const Banner = () => {
 
         <p className="text-base font-medium my-3 text-stone-400">
           Welcome to our chef-inspired world of culinary delight! Let us take
-          you on a journey of <br /> flavor and texture with our expertly
-          crafted dishes
+          you on a journey of flavor and texture with our expertly
+          crafted dishes. We have the experience to provide concept development strategies.
         </p>
         <Link to="/about">
-          <button className="btn btn-outline rounded-full text-stone-300">
+          <button className="btn btn-outline rounded text-stone-300">
             About Us
           </button>
         </Link>

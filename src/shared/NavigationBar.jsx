@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaBeer, FaUserCircle } from "react-icons/fa";
+import { AuthContext } from "../provider/AuthProvider";
 
 const NavigationBar = () => {
+  const { user, logout } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logout()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
-    <div className="navbar container mx-auto bg-slate-950 ">
+    <div className="navbar 0 mx-auto bg-slate-950 ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -28,7 +37,7 @@ const NavigationBar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/home">Home</Link>
             </li>
             <li tabIndex={0}>
               <Link to="/blog">Blog</Link>
@@ -45,8 +54,8 @@ const NavigationBar = () => {
           </ul>
         </div>
         <Link
-          to="/"
-          className="btn btn-ghost normal-case text-white text-xl hidden lg:block pt-2 "
+          to="/home"
+          className="btn btn-ghost normal-case text-white text-base lg:text-xl  "
         >
           The Art of Italian Cooking
         </Link>
@@ -54,9 +63,9 @@ const NavigationBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-white">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
-          <li tabIndex={0}>
+          <li>
             <Link to="/blog">Blog</Link>
           </li>
           <li>
@@ -65,15 +74,35 @@ const NavigationBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <div className="rounded-full text-white">
-          <FaUserCircle
-            className="me-2"
-            style={{ fontSize: "2rem" }}
-          ></FaUserCircle>
-        </div>
-        <Link to="/login" className="btn btn-outline  text-white font-semibold">
-          Login
-        </Link>
+        {user ? (
+          <label className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={user.photoURL} />
+            </div>
+          </label>
+        ) : (
+          <div className="rounded-full text-white">
+            <FaUserCircle
+              className="me-2"
+              style={{ fontSize: "2rem" }}
+            ></FaUserCircle>
+          </div>
+        )}
+        {user ? (
+          <Link
+            onClick={handleLogOut}
+            className="btn btn-outline btn-xs sm:btn-sm md:btn-md text-white font-semibold"
+          >
+            Logout
+          </Link>
+        ) : (
+          <Link
+            to="/login"
+            className="btn btn-outline btn-xs sm:btn-sm md:btn-md text-white font-semibold"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import { Link, useLoaderData } from "react-router-dom";
 import "./ViewChefDetails.css";
 import TypewriterComponent from "typewriter-effect";
 import Recipe from "../../component/Recipe/Recipe";
-import { keys } from "localforage";
 
 const ViewChefDetails = () => {
   const details = useLoaderData();
@@ -12,7 +11,7 @@ const ViewChefDetails = () => {
     details;
 
   return (
-    <div className="container mx-auto">
+    <div className="0 mx-auto">
       <div className=" banner p-12">
         <div className="card lg:card-side  bg-base-100 shadow-xl ">
           <figure>
@@ -22,7 +21,6 @@ const ViewChefDetails = () => {
             <h2 className="card-title text-3xl">
               <TypewriterComponent
                 options={{
-                  pauseFor: 5000,
                   strings: [chefName],
                   autoStart: true,
                   loop: true,
@@ -41,7 +39,7 @@ const ViewChefDetails = () => {
                 {likes}
               </div>
               <div>
-                <Link to={`/`}>
+                <Link to={`/home`}>
                   <FaArrowCircleLeft
                     style={{ fontSize: "2rem" }}
                   ></FaArrowCircleLeft>
@@ -52,11 +50,11 @@ const ViewChefDetails = () => {
         </div>
       </div>
       <div>
-        <h2 className="text-center mt-6 text-3xl font-bold">
+        <h2 className="text-center mt-16 text-3xl font-bold">
           Gallery of Recipes
         </h2>
-        <div className="grid grid-cols-3 mt-10 gap-6">
-          {recipes.map((recipe , index) => (
+        <div className="grid lg:grid-cols-3 mx-8 lg:mx-16 mt-10 gap-6">
+          {recipes.map((recipe, index) => (
             <Recipe key={index} recipe={recipe}></Recipe>
           ))}
         </div>
