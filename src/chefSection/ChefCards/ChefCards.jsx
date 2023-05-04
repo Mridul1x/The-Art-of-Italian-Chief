@@ -4,7 +4,6 @@ import ChefDetails from "../ChefDetails/ChefDetails";
 
 const ChefCards = () => {
   const chefs = useLoaderData();
-  console.log(chefs);
   return (
     <div className="mt-28 ">
       <div className="lg:w-1/2 lg:mx-auto text-center mx-8">

@@ -1,19 +1,25 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import app from "../../utilities/firebase.config";
+import { getAuth, updateProfile } from "firebase/auth";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const auth = getAuth(app);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const handleButton = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     const name = form.username.value;
-    console.log(email, password, name);
+    const photoUrl = form.photourl.value;
+    
 
     setError("");
+    setSuccess("");
 
     if (password.length < 6) {
       setError("Password must be 6 character or longer");
@@ -24,6 +30,11 @@ const Register = () => {
       .then((result) => {
         // Signed in
         const user = result.user;
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photoUrl,
+        });
+        setSuccess("Registration Successful");
         console.log(user);
       })
       .catch((error) => {
@@ -49,6 +60,18 @@ const Register = () => {
                 type="text"
                 placeholder="Enter your Full Name"
                 name="username"
+                required
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo Url</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter your photo url"
+                name="photourl"
                 required
                 className="input input-bordered"
               />
@@ -92,9 +115,10 @@ const Register = () => {
               </Link>{" "}
             </p>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Sign Up</button>
+              <button className="btn btn-primary">Register</button>
             </div>
             <p className="text-red-500">{error}</p>
+            <p className="text-green-600">{success}</p>
           </form>
         </div>
       </div>
