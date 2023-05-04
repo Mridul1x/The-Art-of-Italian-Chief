@@ -10,11 +10,13 @@ import ChefCards from "../chefSection/ChefCards/ChefCards";
 import ViewChefDetails from "../chefSection/ViewChefDetails/ViewChefDetails";
 import ChefLayout from "../layout/chefLayout";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../error/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginLayout></LoginLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/login",
@@ -47,7 +49,11 @@ const router = createBrowserRouter([
   },
   {
     path: "chef",
-    element: <ChefLayout></ChefLayout>,
+    element: (
+      <PrivateRoute>
+        <ChefLayout></ChefLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: ":id",

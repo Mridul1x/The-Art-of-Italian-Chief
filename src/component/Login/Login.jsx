@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { RotatingLines } from "react-loader-spinner";
 
 const Login = () => {
-  const { userSignIn, loading, user, googleAuth } = useContext(AuthContext);
+  const { userSignIn, loading, user, googleAuth, gitHubAuth } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
@@ -41,6 +41,18 @@ const Login = () => {
 
   const handleAuth = () => {
     googleAuth()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+  const handleGitHubAuth = () => {
+    gitHubAuth()
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -112,7 +124,7 @@ const Login = () => {
                 <button onClick={handleAuth} className="btn btn-outline my-2  ">
                   <FaGoogle className="me-2"></FaGoogle>Login with Google
                 </button>
-                <button className=" btn btn-outline">
+                <button onClick={handleGitHubAuth} className=" btn btn-outline">
                   <FaGithub className="me-2"></FaGithub>Login with Github
                 </button>
               </>

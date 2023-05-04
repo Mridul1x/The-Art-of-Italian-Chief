@@ -1,16 +1,24 @@
 import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-import { Progress } from "react-daisyui";
+import { RotatingLines } from "react-loader-spinner";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
+  if (loading) {
+    return (
+      <RotatingLines
+        strokeColor="black"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="50"
+        visible={true}
+      />
+    );
+  }
   if (user) {
     return children;
-  }
-  if (loading) {
-    return <Progress className="progress w-56"></Progress>;
   }
 
   return <Navigate to="/login" state={{ from: location }}></Navigate>;
