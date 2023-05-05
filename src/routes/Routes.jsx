@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import Blog from "../component/Blog/Blog";
 import LoginLayout from "../layout/LoginLayout";
@@ -19,6 +19,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
+        path: "/",
+        element: <Navigate to="/home"></Navigate>,
+      },
+      {
         path: "/login",
         element: <Login></Login>,
       },
@@ -30,6 +34,7 @@ const router = createBrowserRouter([
         path: "/about",
         element: <About></About>,
       },
+
       {
         path: "/blog",
         element: <Blog></Blog>,
@@ -43,7 +48,7 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <ChefCards></ChefCards>,
-        loader: () => fetch("http://localhost:5000/chef"),
+        loader: () => fetch("https://assignment-server-one.vercel.app/chef"),
       },
     ],
   },
@@ -63,7 +68,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/chef/${params.id}`),
+          fetch(`https://assignment-server-one.vercel.app/chef/${params.id}`),
       },
     ],
   },

@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FaBeer, FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
 import { RotatingLines } from "react-loader-spinner";
+import ActiveLink from "../component/ActiveLink/ActiveLink";
 
 const NavigationBar = () => {
   const { loading, user, logout } = useContext(AuthContext);
@@ -39,13 +40,13 @@ const NavigationBar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="/home">Home</Link>
+              <ActiveLink to="/home">Home</ActiveLink>
             </li>
             <li tabIndex={0}>
-              <Link to="/blog">Blog</Link>
+              <ActiveLink to="/blog">Blog</ActiveLink>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <ActiveLink to="/about">About</ActiveLink>
             </li>
             <Link
               to="/"
@@ -65,13 +66,13 @@ const NavigationBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-white">
           <li>
-            <Link to="/home">Home</Link>
+            <ActiveLink to="/home">Home</ActiveLink>
           </li>
           <li>
-            <Link to="/blog">Blog</Link>
+            <ActiveLink to="/blog">Blog</ActiveLink>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <ActiveLink to="/about">About</ActiveLink>
           </li>
         </ul>
       </div>
@@ -88,9 +89,9 @@ const NavigationBar = () => {
           <>
             <div
               data-tip={user.displayName}
-              className="me-2 tooltip tooltip-bottom "
+              className="me-1 lg:me-2 tooltip tooltip-bottom "
             >
-              <img className="w-11 rounded-full " src={user.photoURL} />
+              <img className="w-6 lg:w-11 rounded-full " src={user.photoURL} />
             </div>
             <Link
               onClick={handleLogOut}

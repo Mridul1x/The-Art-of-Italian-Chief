@@ -13,6 +13,7 @@ const Login = () => {
   const location = useLocation();
   const [check, setCheck] = useState(false);
   const from = location.state?.from?.pathname || "/home";
+  console.log(location);
 
   const handleButton = (event) => {
     event.preventDefault();
@@ -110,7 +111,7 @@ const Login = () => {
             <p>
               New to this website? Please
               <Link
-                className="link link-hover text-cyan-800 font-bold"
+                className="ms-1 link link-hover text-cyan-800 font-bold"
                 to="/register"
               >
                 Register

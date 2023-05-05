@@ -6,8 +6,7 @@ import "@smastrom/react-rating/style.css";
 import { FaHeart, FaRegHeart, FaRegStar } from "react-icons/fa";
 
 const Recipe = ({ recipe }) => {
-  const { recipeName, image, ingredients, cookingMethod, rating} =
-    recipe;
+  const { recipeName, image, ingredients, cookingMethod, rating } = recipe;
   const [favorite, setFavorite] = useState(false);
 
   const handleButton = () => {
@@ -24,12 +23,13 @@ const Recipe = ({ recipe }) => {
         </figure>
         <div className="card-body">
           <h2 className="card-title font-bold text-slate-50">{recipeName}</h2>
-          <p className="text-slate-200">
+          <div className="text-slate-200">
             <span className="font-semibold text-slate-100">Ingredients:</span>
-            {ingredients.map((i) => (
-              <li>{i}</li>
+
+            {ingredients.map((i, index) => (
+              <li key={index}>{i}</li>
             ))}
-          </p>
+          </div>
           <p className="text-slate-200 text-justify">
             <span className="font-semibold text-slate-100">
               Cooking Method:{" "}
@@ -37,7 +37,7 @@ const Recipe = ({ recipe }) => {
             {cookingMethod}
           </p>
           <div className="card-actions justify-between items-center">
-            <p className="flex  items-center text-lg font-semibold text-slate-200">
+            <div className="flex  items-center text-lg font-semibold text-slate-200">
               <Rating
                 className="me-2 "
                 style={{ maxWidth: 150, color: "red" }}
@@ -45,13 +45,16 @@ const Recipe = ({ recipe }) => {
                 readOnly
               />
               {rating}
-            </p>
+            </div>
             <button
               onClick={handleButton}
               disabled={favorite}
               className="btn btn-error"
             >
-              <FaRegHeart className="text-white" style={{ fontSize: "1.2rem" }}></FaRegHeart>
+              <FaRegHeart
+                className="text-white"
+                style={{ fontSize: "1.2rem" }}
+              ></FaRegHeart>
             </button>
           </div>
         </div>

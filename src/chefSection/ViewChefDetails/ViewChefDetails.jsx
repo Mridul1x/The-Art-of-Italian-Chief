@@ -11,7 +11,7 @@ const ViewChefDetails = () => {
     details;
 
   return (
-    <div className="0 mx-auto">
+    <div className=" mx-auto">
       <div className=" banner p-12">
         <div className="card lg:card-side  bg-base-100 shadow-xl ">
           <figure>

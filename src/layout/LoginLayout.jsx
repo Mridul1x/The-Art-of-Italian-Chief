@@ -5,10 +5,14 @@ import Footer from "../shared/Footer";
 
 const LoginLayout = () => {
   return (
-    <div>
-      <NavigationBar></NavigationBar>
-      <Outlet></Outlet>
-      <Footer></Footer>
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-grow">
+        <NavigationBar></NavigationBar>
+        <Outlet></Outlet>
+      </div>
+      <div className="flex-shrink-0">
+        <Footer></Footer>
+      </div>
     </div>
   );
 };
