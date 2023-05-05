@@ -4,6 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import "./ViewChefDetails.css";
 import TypewriterComponent from "typewriter-effect";
 import Recipe from "../../component/Recipe/Recipe";
+import LazyLoad from "react-lazyload";
 
 const ViewChefDetails = () => {
   const details = useLoaderData();
@@ -15,7 +16,9 @@ const ViewChefDetails = () => {
       <div className=" banner p-12">
         <div className="card lg:card-side  bg-base-100 shadow-xl ">
           <figure>
-            <img src={chefImg} alt="Chef Name" />
+            <LazyLoad height={300} offset={[-200, 0]} debounce={100}>
+              <img src={chefImg} alt="Chef Name" />
+            </LazyLoad>
           </figure>
           <div className="card-body justify-center">
             <h2 className="card-title text-3xl">

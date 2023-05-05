@@ -1,5 +1,6 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
+import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
 
 const ChefDetails = ({ chef }) => {
@@ -7,7 +8,9 @@ const ChefDetails = ({ chef }) => {
   return (
     <div className="card bg-base-100 shadow-xl ">
       <figure>
-        <img className="" src={chefImg} alt="Shoes" />
+        <LazyLoad height={300} offset={[-200, 0]} debounce={300}>
+          <img className="" src={chefImg} alt="Shoes" />
+        </LazyLoad>
       </figure>
       <div className="card-body">
         <h2 className="card-title">{chefName}</h2>

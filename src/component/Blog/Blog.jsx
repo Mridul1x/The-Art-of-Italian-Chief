@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
+
 
 const Blog = () => {
+  const componentRef = useRef();
   return (
     <div>
+  
       <h1 className="text-2xl mt-6 text-center font-bold">Blogs</h1>
       <div className="mx-12 text-justify">
         <h1 className="mt-6 mb-2 text-xl font-semibold">
